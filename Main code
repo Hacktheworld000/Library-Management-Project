@@ -1,0 +1,125 @@
+#include <iostream>
+#include <string>
+#include <ctime>
+using namespace std;
+
+class Library{
+    private:
+        int Total_Books = 500;
+        int Book_count = 0;
+        int book_id = (rand()%10000 -5);
+    
+    public:
+        void addBook(){
+            cout << "limit upto 10 books only at a time!!\n";
+            string Bname;
+            string Aname;
+            cout << "Enter Book name: ";
+            getline(cin,Bname);
+            cout << "Enter Author name: ";
+            getline(cin,Aname);
+            
+            if (Book_count < 10){
+                Book_count++;
+                cout << "Book name: " << Bname << " added succesfully\n";
+            } else {
+                cout << "Reached to limit no more books can't be added.\n";
+            }
+        }
+    
+    void borrowBook(){
+    string Bname;
+    string Aname;
+    cout << "Enter Book name: ";
+    cin.ignore(); // Add this line
+    getline(cin,Bname);
+    cout << "Enter Author name: ";
+    getline(cin,Aname); 
+        
+    // Book Id generator 
+    srand(time(0));
+    cout << "Book Id: " << book_id << endl;
+    cout << "Book Borrowed successfully.Return it within 10days.\n";
+    if (Total_Books > 0){
+        Total_Books--;
+        cout << "No. of books left: " << Total_Books << endl;
+    } else {
+        cout << "No books left in the library.\n";
+    }
+        
+        
+}
+    
+    void returnBook(){
+        int returnBook;
+        cout << "Enter Book id: ";
+        cin >> returnBook;
+        if (book_id == returnBook){
+            cout << "Book Returned successfully..\n";
+        }else{
+            cout << "Invalid Book id!!\n";
+        }
+        
+    }
+};
+
+void User_Choice(int num,Library &lib);
+int main(){
+    Library lib;
+    
+    cout << "************************************************\n";
+    cout << "*           Library Management In C++    *      \n";
+    cout << "************************************************\n";
+    
+    string x;
+    cout << "Enter some basic details\n";
+    cout << "Enter your name: ";
+    getline(cin,x);
+    int mobile;
+    cout << "Enter your mobile number: ";
+    cin >> mobile;
+    cin.ignore(); // Add this line
+    
+    cout << "We have almost 500 books related to coding and pentesting in our library!!\n";
+    
+    cout << "####################################\n";
+    while (true) {
+        cout << "1.Add Book\n";
+        cout << "2.Borrow Book\n";
+        cout << "3.Return Book\n";
+        cout << "4.Exit\n";
+        
+        int num;
+        cout << "Enter From(1-4): ";
+        cin >> num;
+        cin.ignore(); // Add this line
+        
+        User_Choice(num,lib);
+        
+        if (num == 4) {
+            cout << "Program Exited!!.\n";
+            break; // Exit the loop
+        }
+    }
+    
+    cout << "User name: " << x << endl;
+    cout << "Mobile Number " << mobile << endl;
+    return 0;
+}
+
+void User_Choice(int num,Library &lib){
+    switch (num){
+        case 1:
+            lib.addBook();
+            break;
+        case 2:
+            lib.borrowBook();
+            break;
+        
+        case 3:
+            lib.returnBook();
+            break;
+        
+        
+    }
+}
