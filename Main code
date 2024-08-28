@@ -7,7 +7,7 @@ class Library{
     private:
         int Total_Books = 500;
         int Book_count = 0;
-        int book_id = (rand()%10000 -5);
+        int book_id = (rand()%10000 +5);
     
     public:
         void addBook(){
@@ -83,7 +83,9 @@ int main(){
     cout << "We have almost 500 books related to coding and pentesting in our library!!\n";
     
     cout << "####################################\n";
-    while (true) {
+    cout << "Yopu can use this program only 50times!!\n";
+    int times = 0;
+    while (times <=50) {
         cout << "1.Add Book\n";
         cout << "2.Borrow Book\n";
         cout << "3.Return Book\n";
@@ -100,6 +102,7 @@ int main(){
             cout << "Program Exited!!.\n";
             break; // Exit the loop
         }
+        times++;
     }
     
     cout << "User name: " << x << endl;
